@@ -1,0 +1,18 @@
+{
+  "dataServiceGeneratorVersion": "0.9.0",
+  "appInfo": {
+    "name": "Amplication SaaS Demo",
+    "description": "",
+    "version": "v0f5yqt2",
+    "id": "ckujzjlds13903461bs66yfn9xe6",
+    "url": "https://app.amplication.com/ckujzjlds13903461bs66yfn9xe6",
+    "settings": {
+      "dbHost": "localhost",
+      "dbName": "",
+      "dbPassword": "admin",
+      "dbPort": 5432,
+      "dbUser": "admin",
+      "appId": "ckujzjlds13903461bs66yfn9xe6"
+    }
+  }
+}
