@@ -7,6 +7,7 @@ export type Organization = {
   applications?: Array<Application>;
   createdAt: Date;
   id: string;
+  name: string;
   organizationInvitations?: Array<OrganizationInvitation>;
   organizationMemberships?: Array<OrganizationMembership>;
   owner?: User;

@@ -34,6 +34,14 @@ class Organization {
   id!: string;
 
   @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  name!: string;
+
+  @ApiProperty({
     required: false,
     type: () => [OrganizationInvitation],
   })
