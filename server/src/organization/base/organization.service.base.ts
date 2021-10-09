@@ -3,7 +3,7 @@ import { PrismaService } from "nestjs-prisma";
 import {
   Prisma,
   Organization,
-  App,
+  Application,
   OrganizationInvitation,
   OrganizationMembership,
   User,
@@ -44,15 +44,15 @@ export class OrganizationServiceBase {
     return this.prisma.organization.delete(args);
   }
 
-  async findApps(
+  async findApplications(
     parentId: string,
-    args: Prisma.AppFindManyArgs
-  ): Promise<App[]> {
+    args: Prisma.ApplicationFindManyArgs
+  ): Promise<Application[]> {
     return this.prisma.organization
       .findUnique({
         where: { id: parentId },
       })
-      .apps(args);
+      .applications(args);
   }
 
   async findOrganizationInvitations(

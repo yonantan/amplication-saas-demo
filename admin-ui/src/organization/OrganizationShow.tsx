@@ -25,9 +25,9 @@ export const OrganizationShow = (props: ShowProps): React.ReactElement => {
         </ReferenceField>
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceManyField
-          reference="App"
+          reference="Application"
           target="OrganizationId"
-          label="Apps"
+          label="Applications"
         >
           <Datagrid rowClick="show">
             <DateField source="createdAt" label="Created At" />

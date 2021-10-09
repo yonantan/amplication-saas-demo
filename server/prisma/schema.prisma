@@ -21,7 +21,7 @@ model User {
 }
 
 model Organization {
-  apps                    App[]
+  applications            Application[]
   createdAt               DateTime                 @default(now())
   id                      String                   @id @default(cuid())
   organizationInvitations OrganizationInvitation[]
@@ -52,7 +52,7 @@ model OrganizationInvitation {
   userEmail      String
 }
 
-model App {
+model Application {
   createdAt      DateTime      @default(now())
   id             String        @id @default(cuid())
   name           String?

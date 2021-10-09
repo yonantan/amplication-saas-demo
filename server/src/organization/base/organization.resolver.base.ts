@@ -14,8 +14,8 @@ import { DeleteOrganizationArgs } from "./DeleteOrganizationArgs";
 import { OrganizationFindManyArgs } from "./OrganizationFindManyArgs";
 import { OrganizationFindUniqueArgs } from "./OrganizationFindUniqueArgs";
 import { Organization } from "./Organization";
-import { AppFindManyArgs } from "../../app/base/AppFindManyArgs";
-import { App } from "../../app/base/App";
+import { ApplicationFindManyArgs } from "../../application/base/ApplicationFindManyArgs";
+import { Application } from "../../application/base/Application";
 import { OrganizationInvitationFindManyArgs } from "../../organizationInvitation/base/OrganizationInvitationFindManyArgs";
 import { OrganizationInvitation } from "../../organizationInvitation/base/OrganizationInvitation";
 import { OrganizationMembershipFindManyArgs } from "../../organizationMembership/base/OrganizationMembershipFindManyArgs";
@@ -215,24 +215,24 @@ export class OrganizationResolverBase {
     }
   }
 
-  @graphql.ResolveField(() => [App])
+  @graphql.ResolveField(() => [Application])
   @nestAccessControl.UseRoles({
     resource: "Organization",
     action: "read",
     possession: "any",
   })
-  async apps(
+  async applications(
     @graphql.Parent() parent: Organization,
-    @graphql.Args() args: AppFindManyArgs,
+    @graphql.Args() args: ApplicationFindManyArgs,
     @gqlUserRoles.UserRoles() userRoles: string[]
-  ): Promise<App[]> {
+  ): Promise<Application[]> {
     const permission = this.rolesBuilder.permission({
       role: userRoles,
       action: "read",
       possession: "any",
-      resource: "App",
+      resource: "Application",
     });
-    const results = await this.service.findApps(parent.id, args);
+    const results = await this.service.findApplications(parent.id, args);
 
     if (!results) {
       return [];
