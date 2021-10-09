@@ -1,6 +1,6 @@
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { App } from "../../app/base/App";
+import { Application } from "../../application/base/Application";
 import { ValidateNested, IsOptional, IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { OrganizationInvitation } from "../../organizationInvitation/base/OrganizationInvitation";
@@ -10,12 +10,12 @@ import { User } from "../../user/base/User";
 class Organization {
   @ApiProperty({
     required: false,
-    type: () => [App],
+    type: () => [Application],
   })
   @ValidateNested()
-  @Type(() => App)
+  @Type(() => Application)
   @IsOptional()
-  apps?: Array<App>;
+  applications?: Array<Application>;
 
   @ApiProperty({
     required: true,

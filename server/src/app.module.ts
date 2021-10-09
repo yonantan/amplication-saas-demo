@@ -3,7 +3,7 @@ import { UserModule } from "./user/user.module";
 import { OrganizationModule } from "./organization/organization.module";
 import { OrganizationMembershipModule } from "./organizationMembership/organizationMembership.module";
 import { OrganizationInvitationModule } from "./organizationInvitation/organizationInvitation.module";
-import { AppModule } from "./app/app.module";
+import { ApplicationModule } from "./application/application.module";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 import { MorganModule } from "nest-morgan";
@@ -19,7 +19,7 @@ import { GraphQLModule } from "@nestjs/graphql";
     OrganizationModule,
     OrganizationMembershipModule,
     OrganizationInvitationModule,
-    AppModule,
+    ApplicationModule,
     ACLModule,
     AuthModule,
     MorganModule,

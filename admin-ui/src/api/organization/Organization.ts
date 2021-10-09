@@ -1,10 +1,10 @@
-import { App } from "../app/App";
+import { Application } from "../application/Application";
 import { OrganizationInvitation } from "../organizationInvitation/OrganizationInvitation";
 import { OrganizationMembership } from "../organizationMembership/OrganizationMembership";
 import { User } from "../user/User";
 
 export type Organization = {
-  apps?: Array<App>;
+  applications?: Array<Application>;
   createdAt: Date;
   id: string;
   organizationInvitations?: Array<OrganizationInvitation>;

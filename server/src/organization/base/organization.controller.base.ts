@@ -15,8 +15,8 @@ import { OrganizationWhereUniqueInput } from "./OrganizationWhereUniqueInput";
 import { OrganizationFindManyArgs } from "./OrganizationFindManyArgs";
 import { OrganizationUpdateInput } from "./OrganizationUpdateInput";
 import { Organization } from "./Organization";
-import { AppWhereInput } from "../../app/base/AppWhereInput";
-import { App } from "../../app/base/App";
+import { ApplicationWhereInput } from "../../application/base/ApplicationWhereInput";
+import { Application } from "../../application/base/Application";
 import { OrganizationInvitationWhereInput } from "../../organizationInvitation/base/OrganizationInvitationWhereInput";
 import { OrganizationInvitation } from "../../organizationInvitation/base/OrganizationInvitation";
 import { OrganizationMembershipWhereInput } from "../../organizationMembership/base/OrganizationMembershipWhereInput";
@@ -300,30 +300,30 @@ export class OrganizationControllerBase {
     defaultAuthGuard.DefaultAuthGuard,
     nestAccessControl.ACGuard
   )
-  @common.Get("/:id/apps")
+  @common.Get("/:id/applications")
   @nestAccessControl.UseRoles({
     resource: "Organization",
     action: "read",
     possession: "any",
   })
   @swagger.ApiQuery({
-    type: () => AppWhereInput,
+    type: () => ApplicationWhereInput,
     style: "deepObject",
     explode: true,
   })
-  async findManyApps(
+  async findManyApplications(
     @common.Req() request: Request,
     @common.Param() params: OrganizationWhereUniqueInput,
     @nestAccessControl.UserRoles() userRoles: string[]
-  ): Promise<App[]> {
-    const query: AppWhereInput = request.query;
+  ): Promise<Application[]> {
+    const query: ApplicationWhereInput = request.query;
     const permission = this.rolesBuilder.permission({
       role: userRoles,
       action: "read",
       possession: "any",
-      resource: "App",
+      resource: "Application",
     });
-    const results = await this.service.findApps(params.id, {
+    const results = await this.service.findApplications(params.id, {
       where: query,
       select: {
         createdAt: true,
@@ -347,19 +347,19 @@ export class OrganizationControllerBase {
     defaultAuthGuard.DefaultAuthGuard,
     nestAccessControl.ACGuard
   )
-  @common.Post("/:id/apps")
+  @common.Post("/:id/applications")
   @nestAccessControl.UseRoles({
     resource: "Organization",
     action: "update",
     possession: "any",
   })
-  async createApps(
+  async createApplications(
     @common.Param() params: OrganizationWhereUniqueInput,
     @common.Body() body: OrganizationWhereUniqueInput[],
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<void> {
     const data = {
-      apps: {
+      applications: {
         connect: body,
       },
     };
@@ -392,19 +392,19 @@ export class OrganizationControllerBase {
     defaultAuthGuard.DefaultAuthGuard,
     nestAccessControl.ACGuard
   )
-  @common.Patch("/:id/apps")
+  @common.Patch("/:id/applications")
   @nestAccessControl.UseRoles({
     resource: "Organization",
     action: "update",
     possession: "any",
   })
-  async updateApps(
+  async updateApplications(
     @common.Param() params: OrganizationWhereUniqueInput,
     @common.Body() body: OrganizationWhereUniqueInput[],
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<void> {
     const data = {
-      apps: {
+      applications: {
         set: body,
       },
     };
@@ -437,19 +437,19 @@ export class OrganizationControllerBase {
     defaultAuthGuard.DefaultAuthGuard,
     nestAccessControl.ACGuard
   )
-  @common.Delete("/:id/apps")
+  @common.Delete("/:id/applications")
   @nestAccessControl.UseRoles({
     resource: "Organization",
     action: "update",
     possession: "any",
   })
-  async deleteApps(
+  async deleteApplications(
     @common.Param() params: OrganizationWhereUniqueInput,
     @common.Body() body: OrganizationWhereUniqueInput[],
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<void> {
     const data = {
-      apps: {
+      applications: {
         disconnect: body,
       },
     };

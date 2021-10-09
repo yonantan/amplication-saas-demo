@@ -121,31 +121,31 @@
   },
   {
     "role": "user",
-    "resource": "App",
+    "resource": "Application",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "App",
+    "resource": "Application",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "App",
+    "resource": "Application",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "App",
+    "resource": "Application",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "App",
+    "resource": "Application",
     "action": "read:any",
     "attributes": "*"
   }

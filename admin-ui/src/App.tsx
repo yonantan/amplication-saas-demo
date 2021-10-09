@@ -22,10 +22,10 @@ import { OrganizationInvitationList } from "./organizationInvitation/Organizatio
 import { OrganizationInvitationCreate } from "./organizationInvitation/OrganizationInvitationCreate";
 import { OrganizationInvitationEdit } from "./organizationInvitation/OrganizationInvitationEdit";
 import { OrganizationInvitationShow } from "./organizationInvitation/OrganizationInvitationShow";
-import { AppList } from "./app/AppList";
-import { AppCreate } from "./app/AppCreate";
-import { AppEdit } from "./app/AppEdit";
-import { AppShow } from "./app/AppShow";
+import { ApplicationList } from "./application/ApplicationList";
+import { ApplicationCreate } from "./application/ApplicationCreate";
+import { ApplicationEdit } from "./application/ApplicationEdit";
+import { ApplicationShow } from "./application/ApplicationShow";
 
 const App = (): React.ReactElement => {
   const [dataProvider, setDataProvider] = useState<DataProvider | null>(null);
@@ -80,11 +80,11 @@ const App = (): React.ReactElement => {
           show={OrganizationInvitationShow}
         />
         <Resource
-          name="App"
-          list={AppList}
-          edit={AppEdit}
-          create={AppCreate}
-          show={AppShow}
+          name="Application"
+          list={ApplicationList}
+          edit={ApplicationEdit}
+          create={ApplicationCreate}
+          show={ApplicationShow}
         />
       </Admin>
     </div>
