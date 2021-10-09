@@ -3,6 +3,7 @@ import {
   Edit,
   SimpleForm,
   EditProps,
+  TextInput,
   ReferenceInput,
   SelectInput,
 } from "react-admin";
@@ -12,6 +13,7 @@ export const OrganizationEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <TextInput label="Name" source="name" />
         <ReferenceInput source="user.id" reference="User" label="Owner">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>

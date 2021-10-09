@@ -24,6 +24,7 @@ model Organization {
   applications            Application[]
   createdAt               DateTime                 @default(now())
   id                      String                   @id @default(cuid())
+  name                    String                   @unique
   organizationInvitations OrganizationInvitation[]
   organizationMemberships OrganizationMembership[]
   owner                   User                     @relation(fields: [ownerId], references: [id])

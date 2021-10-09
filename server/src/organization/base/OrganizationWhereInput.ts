@@ -19,6 +19,17 @@ class OrganizationWhereInput {
 
   @ApiProperty({
     required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  name?: StringFilter;
+
+  @ApiProperty({
+    required: false,
     type: () => UserWhereUniqueInput,
   })
   @ValidateNested()
