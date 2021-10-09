@@ -6,7 +6,19 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "User",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "User",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "User",
     "action": "create:any",
     "attributes": "*"
@@ -18,7 +30,19 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "User",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "User",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "User",
     "action": "delete:any",
     "attributes": "*"
@@ -30,7 +54,19 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "User",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "Organization",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "Organization",
     "action": "read:own",
     "attributes": "*"
@@ -42,13 +78,31 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "Organization",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
     "resource": "Organization",
     "action": "update:any",
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "Organization",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "Organization",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "Organization",
     "action": "delete:any",
     "attributes": "*"
@@ -60,7 +114,19 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "Organization",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "OrganizationMembership",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "OrganizationMembership",
     "action": "read:own",
     "attributes": "*"
@@ -72,13 +138,31 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "OrganizationMembership",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
     "resource": "OrganizationMembership",
     "action": "update:any",
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "OrganizationMembership",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "OrganizationMembership",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "OrganizationMembership",
     "action": "delete:any",
     "attributes": "*"
@@ -90,7 +174,19 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "OrganizationMembership",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "OrganizationInvitation",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "OrganizationInvitation",
     "action": "read:own",
     "attributes": "*"
@@ -102,13 +198,31 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "OrganizationInvitation",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
     "resource": "OrganizationInvitation",
     "action": "update:any",
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "OrganizationInvitation",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "OrganizationInvitation",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "OrganizationInvitation",
     "action": "delete:any",
     "attributes": "*"
@@ -120,7 +234,19 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "OrganizationInvitation",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "Application",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "Application",
     "action": "read:own",
     "attributes": "*"
@@ -132,7 +258,19 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "Application",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "Application",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "Application",
     "action": "update:any",
     "attributes": "*"
@@ -144,7 +282,19 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "Application",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
+    "resource": "Application",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
     "resource": "Application",
     "action": "read:any",
     "attributes": "*"
