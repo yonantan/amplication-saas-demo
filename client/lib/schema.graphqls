@@ -1,0 +1,318 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Application {
+  createdAt: DateTime!
+  id: String!
+  name: String
+  organization: Organization
+  updatedAt: DateTime!
+}
+
+input ApplicationCreateInput {
+  name: String
+  organization: OrganizationWhereUniqueInput
+}
+
+input ApplicationOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  organizationId: SortOrder
+  updatedAt: SortOrder
+}
+
+input ApplicationUpdateInput {
+  name: String
+  organization: OrganizationWhereUniqueInput
+}
+
+input ApplicationWhereInput {
+  id: StringFilter
+  name: StringNullableFilter
+  organization: OrganizationWhereUniqueInput
+}
+
+input ApplicationWhereUniqueInput {
+  id: String!
+}
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+type MetaQueryPayload {
+  count: String!
+}
+
+type Mutation {
+  createApplication(data: ApplicationCreateInput!): Application!
+  createOrganization(data: OrganizationCreateInput!): Organization!
+  createOrganizationInvitation(data: OrganizationInvitationCreateInput!): OrganizationInvitation!
+  createOrganizationMembership(data: OrganizationMembershipCreateInput!): OrganizationMembership!
+  createUser(data: UserCreateInput!): User!
+  deleteApplication(where: ApplicationWhereUniqueInput!): Application!
+  deleteOrganization(where: OrganizationWhereUniqueInput!): Organization!
+  deleteOrganizationInvitation(where: OrganizationInvitationWhereUniqueInput!): OrganizationInvitation!
+  deleteOrganizationMembership(where: OrganizationMembershipWhereUniqueInput!): OrganizationMembership!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updateApplication(data: ApplicationUpdateInput!, where: ApplicationWhereUniqueInput!): Application!
+  updateOrganization(data: OrganizationUpdateInput!, where: OrganizationWhereUniqueInput!): Organization!
+  updateOrganizationInvitation(data: OrganizationInvitationUpdateInput!, where: OrganizationInvitationWhereUniqueInput!): OrganizationInvitation!
+  updateOrganizationMembership(data: OrganizationMembershipUpdateInput!, where: OrganizationMembershipWhereUniqueInput!): OrganizationMembership!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Organization {
+  applications(orderBy: ApplicationOrderByInput, skip: Float, take: Float, where: ApplicationWhereInput): [Application!]!
+  createdAt: DateTime!
+  id: String!
+  name: String!
+  organizationInvitations(orderBy: OrganizationInvitationOrderByInput, skip: Float, take: Float, where: OrganizationInvitationWhereInput): [OrganizationInvitation!]!
+  organizationMemberships(orderBy: OrganizationMembershipOrderByInput, skip: Float, take: Float, where: OrganizationMembershipWhereInput): [OrganizationMembership!]!
+  owner: User
+  updatedAt: DateTime!
+}
+
+input OrganizationCreateInput {
+  name: String!
+  owner: UserWhereUniqueInput!
+}
+
+type OrganizationInvitation {
+  acceptedAt: DateTime
+  createdAt: DateTime!
+  emailSentAt: DateTime
+  id: String!
+  organization: Organization
+  updatedAt: DateTime!
+  userEmail: String!
+}
+
+input OrganizationInvitationCreateInput {
+  acceptedAt: DateTime
+  emailSentAt: DateTime
+  organization: OrganizationWhereUniqueInput!
+  userEmail: String!
+}
+
+input OrganizationInvitationOrderByInput {
+  acceptedAt: SortOrder
+  createdAt: SortOrder
+  emailSentAt: SortOrder
+  id: SortOrder
+  organizationId: SortOrder
+  updatedAt: SortOrder
+  userEmail: SortOrder
+}
+
+input OrganizationInvitationUpdateInput {
+  acceptedAt: DateTime
+  emailSentAt: DateTime
+  organization: OrganizationWhereUniqueInput
+  userEmail: String
+}
+
+input OrganizationInvitationWhereInput {
+  acceptedAt: DateTimeNullableFilter
+  emailSentAt: DateTimeNullableFilter
+  id: StringFilter
+  organization: OrganizationWhereUniqueInput
+  userEmail: StringFilter
+}
+
+input OrganizationInvitationWhereUniqueInput {
+  id: String!
+}
+
+type OrganizationMembership {
+  createdAt: DateTime!
+  id: String!
+  organization: Organization
+  updatedAt: DateTime!
+  user: User
+}
+
+input OrganizationMembershipCreateInput {
+  organization: OrganizationWhereUniqueInput!
+  user: UserWhereUniqueInput!
+}
+
+input OrganizationMembershipOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  organizationId: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input OrganizationMembershipUpdateInput {
+  organization: OrganizationWhereUniqueInput
+  user: UserWhereUniqueInput
+}
+
+input OrganizationMembershipWhereInput {
+  id: StringFilter
+  organization: OrganizationWhereUniqueInput
+  user: UserWhereUniqueInput
+}
+
+input OrganizationMembershipWhereUniqueInput {
+  id: String!
+}
+
+input OrganizationOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  ownerId: SortOrder
+  updatedAt: SortOrder
+}
+
+input OrganizationUpdateInput {
+  name: String
+  owner: UserWhereUniqueInput
+}
+
+input OrganizationWhereInput {
+  id: StringFilter
+  name: StringFilter
+  owner: UserWhereUniqueInput
+}
+
+input OrganizationWhereUniqueInput {
+  id: String!
+}
+
+type Query {
+  _applicationsMeta(orderBy: ApplicationOrderByInput, skip: Float, take: Float, where: ApplicationWhereInput): MetaQueryPayload!
+  _organizationInvitationsMeta(orderBy: OrganizationInvitationOrderByInput, skip: Float, take: Float, where: OrganizationInvitationWhereInput): MetaQueryPayload!
+  _organizationMembershipsMeta(orderBy: OrganizationMembershipOrderByInput, skip: Float, take: Float, where: OrganizationMembershipWhereInput): MetaQueryPayload!
+  _organizationsMeta(orderBy: OrganizationOrderByInput, skip: Float, take: Float, where: OrganizationWhereInput): MetaQueryPayload!
+  _usersMeta(orderBy: UserOrderByInput, skip: Float, take: Float, where: UserWhereInput): MetaQueryPayload!
+  application(where: ApplicationWhereUniqueInput!): Application
+  applications(orderBy: ApplicationOrderByInput, skip: Float, take: Float, where: ApplicationWhereInput): [Application!]!
+  organization(where: OrganizationWhereUniqueInput!): Organization
+  organizationInvitation(where: OrganizationInvitationWhereUniqueInput!): OrganizationInvitation
+  organizationInvitations(orderBy: OrganizationInvitationOrderByInput, skip: Float, take: Float, where: OrganizationInvitationWhereInput): [OrganizationInvitation!]!
+  organizationMembership(where: OrganizationMembershipWhereUniqueInput!): OrganizationMembership
+  organizationMemberships(orderBy: OrganizationMembershipOrderByInput, skip: Float, take: Float, where: OrganizationMembershipWhereInput): [OrganizationMembership!]!
+  organizations(orderBy: OrganizationOrderByInput, skip: Float, take: Float, where: OrganizationWhereInput): [Organization!]!
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: UserOrderByInput, skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type User {
+  createdAt: DateTime!
+  firstName: String
+  id: String!
+  lastName: String
+  organizationMemberships(orderBy: OrganizationMembershipOrderByInput, skip: Float, take: Float, where: OrganizationMembershipWhereInput): [OrganizationMembership!]!
+  ownedOrganizations(orderBy: OrganizationOrderByInput, skip: Float, take: Float, where: OrganizationWhereInput): [Organization!]!
+  roles: [String!]!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  firstName: String
+  lastName: String
+  password: String!
+  roles: [String!]!
+  username: String!
+}
+
+type UserInfo {
+  roles: [String!]!
+  username: String!
+}
+
+input UserOrderByInput {
+  createdAt: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  roles: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+  password: String
+  roles: [String!]
+  username: String
+}
+
+input UserWhereInput {
+  firstName: StringNullableFilter
+  id: StringFilter
+  lastName: StringNullableFilter
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}

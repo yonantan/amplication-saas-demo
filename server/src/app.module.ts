@@ -11,6 +11,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { ServeStaticOptionsService } from "./serveStaticOptions.service";
 import { GraphQLModule } from "@nestjs/graphql";
+import * as path from "path";
 
 @Module({
   controllers: [],
@@ -32,7 +33,8 @@ import { GraphQLModule } from "@nestjs/graphql";
         const playground = configService.get("GRAPHQL_PLAYGROUND");
         const introspection = configService.get("GRAPHQL_INTROSPECTION");
         return {
-          autoSchemaFile: true,
+          autoSchemaFile: path.join(process.cwd(), '../client/lib/schema.graphqls'),
+          sortSchema: true,
           playground,
           introspection: playground || introspection,
         };
