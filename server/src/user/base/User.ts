@@ -1,11 +1,21 @@
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, IsOptional, ValidateNested } from "class-validator";
+import { Application } from "../../application/base/Application";
+import { ValidateNested, IsOptional, IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { OrganizationMembership } from "../../organizationMembership/base/OrganizationMembership";
 import { Organization } from "../../organization/base/Organization";
 @ObjectType()
 class User {
+  @ApiProperty({
+    required: false,
+    type: () => [Application],
+  })
+  @ValidateNested()
+  @Type(() => Application)
+  @IsOptional()
+  applications?: Array<Application>;
+
   @ApiProperty({
     required: true,
   })

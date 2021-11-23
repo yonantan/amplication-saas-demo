@@ -23,6 +23,15 @@ class ApplicationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  createdById?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["Asc", "Desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   id?: SortOrder;
 
   @ApiProperty({

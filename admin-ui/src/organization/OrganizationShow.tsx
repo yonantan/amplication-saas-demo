@@ -11,8 +11,8 @@ import {
   Datagrid,
 } from "react-admin";
 
-import { ORGANIZATION_TITLE_FIELD } from "./OrganizationTitle";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
+import { ORGANIZATION_TITLE_FIELD } from "./OrganizationTitle";
 
 export const OrganizationShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -32,6 +32,13 @@ export const OrganizationShow = (props: ShowProps): React.ReactElement => {
         >
           <Datagrid rowClick="show">
             <DateField source="createdAt" label="Created At" />
+            <ReferenceField
+              label="Created By"
+              source="user.id"
+              reference="User"
+            >
+              <TextField source={USER_TITLE_FIELD} />
+            </ReferenceField>
             <TextField label="ID" source="id" />
             <TextField label="Name" source="name" />
             <ReferenceField

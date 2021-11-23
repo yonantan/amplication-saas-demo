@@ -1,7 +1,9 @@
+import { Application } from "../application/Application";
 import { OrganizationMembership } from "../organizationMembership/OrganizationMembership";
 import { Organization } from "../organization/Organization";
 
 export type User = {
+  applications?: Array<Application>;
   createdAt: Date;
   firstName: string | null;
   id: string;

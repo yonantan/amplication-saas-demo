@@ -15,7 +15,7 @@ import { OrganizationMembershipWhereUniqueInput } from "./OrganizationMembership
 import { OrganizationMembershipFindManyArgs } from "./OrganizationMembershipFindManyArgs";
 import { OrganizationMembershipUpdateInput } from "./OrganizationMembershipUpdateInput";
 import { OrganizationMembership } from "./OrganizationMembership";
-
+@swagger.ApiBasicAuth()
 export class OrganizationMembershipControllerBase {
   constructor(
     protected readonly service: OrganizationMembershipService,

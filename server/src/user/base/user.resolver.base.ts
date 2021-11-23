@@ -2,7 +2,7 @@ import * as common from "@nestjs/common";
 import * as graphql from "@nestjs/graphql";
 import * as apollo from "apollo-server-express";
 import * as nestAccessControl from "nest-access-control";
-import * as gqlDefaultAuthGuard from "../../auth/gqlDefaultAuth.guard";
+import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as gqlACGuard from "../../auth/gqlAC.guard";
 import * as gqlUserRoles from "../../auth/gqlUserRoles.decorator";
 import * as abacUtil from "../../auth/abac.util";
@@ -14,6 +14,8 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { ApplicationFindManyArgs } from "../../application/base/ApplicationFindManyArgs";
+import { Application } from "../../application/base/Application";
 import { OrganizationMembershipFindManyArgs } from "../../organizationMembership/base/OrganizationMembershipFindManyArgs";
 import { OrganizationMembership } from "../../organizationMembership/base/OrganizationMembership";
 import { OrganizationFindManyArgs } from "../../organization/base/OrganizationFindManyArgs";
@@ -21,10 +23,7 @@ import { Organization } from "../../organization/base/Organization";
 import { UserService } from "../user.service";
 
 @graphql.Resolver(() => User)
-@common.UseGuards(
-  gqlDefaultAuthGuard.GqlDefaultAuthGuard,
-  gqlACGuard.GqlACGuard
-)
+@common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 export class UserResolverBase {
   constructor(
     protected readonly service: UserService,
@@ -196,6 +195,32 @@ export class UserResolverBase {
       }
       throw error;
     }
+  }
+
+  @graphql.ResolveField(() => [Application])
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "read",
+    possession: "any",
+  })
+  async applications(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: ApplicationFindManyArgs,
+    @gqlUserRoles.UserRoles() userRoles: string[]
+  ): Promise<Application[]> {
+    const permission = this.rolesBuilder.permission({
+      role: userRoles,
+      action: "read",
+      possession: "any",
+      resource: "Application",
+    });
+    const results = await this.service.findApplications(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results.map((result) => permission.filter(result));
   }
 
   @graphql.ResolveField(() => [OrganizationMembership])
