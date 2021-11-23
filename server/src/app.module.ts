@@ -4,14 +4,15 @@ import { OrganizationModule } from "./organization/organization.module";
 import { OrganizationMembershipModule } from "./organizationMembership/organizationMembership.module";
 import { OrganizationInvitationModule } from "./organizationInvitation/organizationInvitation.module";
 import { ApplicationModule } from "./application/application.module";
+import { HealthModule } from "./health/health.module";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
+import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
 import { MorganModule } from "nest-morgan";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { ServeStaticOptionsService } from "./serveStaticOptions.service";
 import { GraphQLModule } from "@nestjs/graphql";
-import * as path from "path";
 
 @Module({
   controllers: [],
@@ -21,8 +22,10 @@ import * as path from "path";
     OrganizationMembershipModule,
     OrganizationInvitationModule,
     ApplicationModule,
+    HealthModule,
     ACLModule,
     AuthModule,
+    SecretsManagerModule,
     MorganModule,
     ConfigModule.forRoot({ isGlobal: true }),
     ServeStaticModule.forRootAsync({
@@ -33,8 +36,7 @@ import * as path from "path";
         const playground = configService.get("GRAPHQL_PLAYGROUND");
         const introspection = configService.get("GRAPHQL_INTROSPECTION");
         return {
-          autoSchemaFile: path.join(process.cwd(), '../client/lib/schema.graphqls'),
-          sortSchema: true,
+          autoSchemaFile: true,
           playground,
           introspection: playground || introspection,
         };

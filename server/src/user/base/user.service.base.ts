@@ -2,6 +2,7 @@ import { PrismaService } from "nestjs-prisma";
 import {
   Prisma,
   User,
+  Application,
   OrganizationMembership,
   Organization,
 } from "@prisma/client";
@@ -64,6 +65,17 @@ export class UserServiceBase {
     args: Prisma.SelectSubset<T, Prisma.UserDeleteArgs>
   ): Promise<User> {
     return this.prisma.user.delete(args);
+  }
+
+  async findApplications(
+    parentId: string,
+    args: Prisma.ApplicationFindManyArgs
+  ): Promise<Application[]> {
+    return this.prisma.user
+      .findUnique({
+        where: { id: parentId },
+      })
+      .applications(args);
   }
 
   async findOrganizationMemberships(

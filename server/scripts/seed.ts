@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import { PrismaClient } from "@prisma/client";
 import { Salt, parseSalt } from "../src/auth/password.service";
 import { hash } from "bcrypt";
+import { customSeed } from "./customSeed";
 
 if (require.main === module) {
   dotenv.config();
@@ -35,5 +36,9 @@ async function seed(bcryptSalt: Salt) {
     create: data,
   });
   client.$disconnect();
+
+  console.info("Seeding database with custom seed...");
+  customSeed();
+
   console.info("Seeded database successfully");
 }

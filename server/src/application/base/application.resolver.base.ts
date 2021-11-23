@@ -2,7 +2,7 @@ import * as common from "@nestjs/common";
 import * as graphql from "@nestjs/graphql";
 import * as apollo from "apollo-server-express";
 import * as nestAccessControl from "nest-access-control";
-import * as gqlDefaultAuthGuard from "../../auth/gqlDefaultAuth.guard";
+import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as gqlACGuard from "../../auth/gqlAC.guard";
 import * as gqlUserRoles from "../../auth/gqlUserRoles.decorator";
 import * as abacUtil from "../../auth/abac.util";
@@ -14,14 +14,12 @@ import { DeleteApplicationArgs } from "./DeleteApplicationArgs";
 import { ApplicationFindManyArgs } from "./ApplicationFindManyArgs";
 import { ApplicationFindUniqueArgs } from "./ApplicationFindUniqueArgs";
 import { Application } from "./Application";
+import { User } from "../../user/base/User";
 import { Organization } from "../../organization/base/Organization";
 import { ApplicationService } from "../application.service";
 
 @graphql.Resolver(() => Application)
-@common.UseGuards(
-  gqlDefaultAuthGuard.GqlDefaultAuthGuard,
-  gqlACGuard.GqlACGuard
-)
+@common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 export class ApplicationResolverBase {
   constructor(
     protected readonly service: ApplicationService,
@@ -127,6 +125,12 @@ export class ApplicationResolverBase {
       data: {
         ...args.data,
 
+        createdBy: args.data.createdBy
+          ? {
+              connect: args.data.createdBy,
+            }
+          : undefined,
+
         organization: args.data.organization
           ? {
               connect: args.data.organization,
@@ -174,6 +178,12 @@ export class ApplicationResolverBase {
         data: {
           ...args.data,
 
+          createdBy: args.data.createdBy
+            ? {
+                connect: args.data.createdBy,
+              }
+            : undefined,
+
           organization: args.data.organization
             ? {
                 connect: args.data.organization,
@@ -211,6 +221,30 @@ export class ApplicationResolverBase {
       }
       throw error;
     }
+  }
+
+  @graphql.ResolveField(() => User, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "Application",
+    action: "read",
+    possession: "any",
+  })
+  async createdBy(
+    @graphql.Parent() parent: Application,
+    @gqlUserRoles.UserRoles() userRoles: string[]
+  ): Promise<User | null> {
+    const permission = this.rolesBuilder.permission({
+      role: userRoles,
+      action: "read",
+      possession: "any",
+      resource: "User",
+    });
+    const result = await this.service.getCreatedBy(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return permission.filter(result);
   }
 
   @graphql.ResolveField(() => Organization, { nullable: true })

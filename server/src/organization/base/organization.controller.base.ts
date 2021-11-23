@@ -21,7 +21,7 @@ import { OrganizationInvitationWhereInput } from "../../organizationInvitation/b
 import { OrganizationInvitation } from "../../organizationInvitation/base/OrganizationInvitation";
 import { OrganizationMembershipWhereInput } from "../../organizationMembership/base/OrganizationMembershipWhereInput";
 import { OrganizationMembership } from "../../organizationMembership/base/OrganizationMembership";
-
+@swagger.ApiBasicAuth()
 export class OrganizationControllerBase {
   constructor(
     protected readonly service: OrganizationService,
@@ -332,6 +332,13 @@ export class OrganizationControllerBase {
       where: query,
       select: {
         createdAt: true,
+
+        createdBy: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
         name: true,
 

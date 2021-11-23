@@ -1,9 +1,9 @@
 {
-  "dataServiceGeneratorVersion": "0.9.0",
+  "dataServiceGeneratorVersion": "0.10.2",
   "appInfo": {
     "name": "Amplication SaaS Demo",
     "description": "",
-    "version": "7uys8kpe",
+    "version": "9w9pe98x",
     "id": "ckujzjlds13903461bs66yfn9xe6",
     "url": "https://app.amplication.com/ckujzjlds13903461bs66yfn9xe6",
     "settings": {
@@ -12,7 +12,8 @@
       "dbPassword": "admin",
       "dbPort": 5432,
       "dbUser": "admin",
-      "appId": "ckujzjlds13903461bs66yfn9xe6"
+      "appId": "ckujzjlds13903461bs66yfn9xe6",
+      "authProvider": "Http"
     }
   }
 }

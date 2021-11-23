@@ -3,16 +3,20 @@ import {
   Create,
   SimpleForm,
   CreateProps,
-  TextInput,
   ReferenceInput,
   SelectInput,
+  TextInput,
 } from "react-admin";
+import { UserTitle } from "../user/UserTitle";
 import { OrganizationTitle } from "../organization/OrganizationTitle";
 
 export const ApplicationCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <ReferenceInput source="user.id" reference="User" label="Created By">
+          <SelectInput optionText={UserTitle} />
+        </ReferenceInput>
         <TextInput label="Name" source="name" />
         <ReferenceInput
           source="organization.id"

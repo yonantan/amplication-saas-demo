@@ -15,7 +15,7 @@ import { OrganizationInvitationWhereUniqueInput } from "./OrganizationInvitation
 import { OrganizationInvitationFindManyArgs } from "./OrganizationInvitationFindManyArgs";
 import { OrganizationInvitationUpdateInput } from "./OrganizationInvitationUpdateInput";
 import { OrganizationInvitation } from "./OrganizationInvitation";
-
+@swagger.ApiBasicAuth()
 export class OrganizationInvitationControllerBase {
   constructor(
     protected readonly service: OrganizationInvitationService,

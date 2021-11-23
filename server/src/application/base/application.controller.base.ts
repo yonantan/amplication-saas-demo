@@ -15,7 +15,7 @@ import { ApplicationWhereUniqueInput } from "./ApplicationWhereUniqueInput";
 import { ApplicationFindManyArgs } from "./ApplicationFindManyArgs";
 import { ApplicationUpdateInput } from "./ApplicationUpdateInput";
 import { Application } from "./Application";
-
+@swagger.ApiBasicAuth()
 export class ApplicationControllerBase {
   constructor(
     protected readonly service: ApplicationService,
@@ -61,6 +61,12 @@ export class ApplicationControllerBase {
       data: {
         ...data,
 
+        createdBy: data.createdBy
+          ? {
+              connect: data.createdBy,
+            }
+          : undefined,
+
         organization: data.organization
           ? {
               connect: data.organization,
@@ -69,6 +75,13 @@ export class ApplicationControllerBase {
       },
       select: {
         createdAt: true,
+
+        createdBy: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
         name: true,
 
@@ -117,6 +130,13 @@ export class ApplicationControllerBase {
       ...args,
       select: {
         createdAt: true,
+
+        createdBy: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
         name: true,
 
@@ -160,6 +180,13 @@ export class ApplicationControllerBase {
       where: params,
       select: {
         createdAt: true,
+
+        createdBy: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
         name: true,
 
@@ -224,6 +251,12 @@ export class ApplicationControllerBase {
         data: {
           ...data,
 
+          createdBy: data.createdBy
+            ? {
+                connect: data.createdBy,
+              }
+            : undefined,
+
           organization: data.organization
             ? {
                 connect: data.organization,
@@ -232,6 +265,13 @@ export class ApplicationControllerBase {
         },
         select: {
           createdAt: true,
+
+          createdBy: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
           name: true,
 
@@ -276,6 +316,13 @@ export class ApplicationControllerBase {
         where: params,
         select: {
           createdAt: true,
+
+          createdBy: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
           name: true,
 

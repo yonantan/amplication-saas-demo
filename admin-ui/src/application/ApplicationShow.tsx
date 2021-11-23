@@ -4,9 +4,10 @@ import {
   SimpleShowLayout,
   ShowProps,
   DateField,
-  TextField,
   ReferenceField,
+  TextField,
 } from "react-admin";
+import { USER_TITLE_FIELD } from "../user/UserTitle";
 import { ORGANIZATION_TITLE_FIELD } from "../organization/OrganizationTitle";
 
 export const ApplicationShow = (props: ShowProps): React.ReactElement => {
@@ -14,6 +15,9 @@ export const ApplicationShow = (props: ShowProps): React.ReactElement => {
     <Show {...props}>
       <SimpleShowLayout>
         <DateField source="createdAt" label="Created At" />
+        <ReferenceField label="Created By" source="user.id" reference="User">
+          <TextField source={USER_TITLE_FIELD} />
+        </ReferenceField>
         <TextField label="ID" source="id" />
         <TextField label="Name" source="name" />
         <ReferenceField
